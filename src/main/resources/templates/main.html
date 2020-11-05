@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Stocks & Bonds</title>
+    </head>
+    <style>
+        .content {
+            max-width: 500px;
+            max-height: 500px;
+            margin: auto;
+            background-color:#F5FFFA;
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+    <body class="content">
+
+    <table style="width: 450px">
+        <tr><td><h2 th:text="'Greetings, ' + ${username} + '!'" /></td><td><p><a href="/logout">Logout</a></p></td></tr>
+        <tr><td><p th:text="'Authorization: '+${authority}"/></td></tr>
+    </table>
+        <h2>Stock Available:</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th> Organization </th>
+                <th> Stock Name </th>
+                <th> Stock Price </th>
+                <th> Trade Currency</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${stocks.empty}">
+                <td colspan="2"> No Stocks Available </td>
+            </tr>
+            <tr th:each="stock : ${stocks}">
+                <td><span th:text="${stock.organization}"> Organization </span></td>
+                <td><span th:text="${stock.stockName}"> Stock Name </span></td>
+                <td><span th:text="${stock.stockPrice}"> Stock Price </span></td>
+                <td><span th:text="${stock.tradeCurrency}"> Trade Currency </span></td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
